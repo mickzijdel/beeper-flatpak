@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Extract the appimage
-chmod +x bruno.appimage
-unappimage bruno.appimage >/dev/null
+chmod +x beeper.appimage
+unappimage beeper.appimage >/dev/null
 
-# Move all the data to /app/extra/bruno
-mv squashfs-root bruno
+# Move all the data to /app/extra/beeper
+mv squashfs-root beeper
 
 # Clean up
-rm bruno.appimage
+rm beeper.appimage

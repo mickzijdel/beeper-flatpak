@@ -1,10 +1,10 @@
-id: com.usebruno.Bruno
+id: com.beeper.beepertexts
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
 base-version: '24.08'
-command: bruno
+command: beeper
 finish-args:
   - --share=network
   - --socket=wayland
@@ -24,34 +24,34 @@ modules:
         url: https://github.com/refi64/unappimage
         commit: d7f86f2a0d7ec3a69211125207d5f127386b849a
 
-  - name: bruno
+  - name: beeper
     buildsystem: simple
     sources:
       - type: script
-        dest-filename: bruno
+        dest-filename: beeper
         commands:
-          - zypak-wrapper.sh /app/extra/bruno/bruno --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations "$@"
+          - zypak-wrapper.sh /app/extra/beeper/beepertexts --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations "$@"
 
       - type: extra-data
-        url: https://github.com/usebruno/bruno/releases/download/v2.10.0/bruno_2.10.0_x86_64_linux.AppImage
-        sha256: 037cf09a4735ed8bbce400c7b2362323aec89bab442c22902d8d09ea22388057
-        filename: bruno.appimage
-        size: 160256611
+        url: https://beeper-desktop.download.beeper.com/builds/Beeper-4.1.169.AppImage
+        sha256: PLACEHOLDER_SHA256_NEEDS_CALCULATION
+        filename: beeper.appimage
+        size: 200955157
 
       - type: file
         path: apply_extra.sh
 
       - type: file
-        path: com.usebruno.Bruno.desktop
+        path: com.beeper.beepertexts.desktop
 
       - type: file
-        path: com.usebruno.Bruno.metainfo.xml
+        path: com.beeper.beepertexts.metainfo.xml
 
       - type: file
-        path: com.usebruno.Bruno.png
+        path: com.beeper.beepertexts.png
     build-commands:
       - install -Dm755 ./apply_extra.sh "${FLATPAK_DEST}/bin/apply_extra"
-      - install -Dm755 bruno -t "${FLATPAK_DEST}/bin/"
+      - install -Dm755 beeper -t "${FLATPAK_DEST}/bin/"
       - install -Dm644 "${FLATPAK_ID}.desktop" -t "${FLATPAK_DEST}/share/applications"
       - install -Dm644 "${FLATPAK_ID}.metainfo.xml" -t "${FLATPAK_DEST}/share/metainfo"
-      - install -Dm644 com.usebruno.Bruno.png -t "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps"
+      - install -Dm644 com.beeper.beepertexts.png -t "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps"
