@@ -66,7 +66,8 @@ update-and-install $appid=appid:
         flatpak --user update "${appid}" || true
     else
         echo "Installing for the first time..."
-        flatpak --user install repo "${appid}"
+        flatpak --user remote-add --if-not-exists --no-gpg-verify local-repo repo
+        flatpak --user install -y local-repo "${appid}"
     fi
     echo "✅ Done! Beeper has been updated and installed."
 
@@ -75,7 +76,7 @@ default:
     @{{ just }} --list
 
 # Check just Syntax
-[group('just')]
+# [group('just')]
 check:
     #!/usr/bin/bash
     find . -type f -name "*.just" | while read -r file; do
@@ -86,7 +87,7 @@ check:
     {{ just }} --unstable --fmt --check -f Justfile
 
 # Fix {{ just }} Syntax
-[group('{{ just }}')]
+# [group('{{ just }}')]
 fix:
     #!/usr/bin/bash
     find . -type f -name "*.just" | while read -r file; do
